@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
+from .forms import ContactForm
+from django.contrib import messages
+
 
 def index(request):
 
@@ -97,3 +100,15 @@ def service_list(request):
     }
 
     return render(request, "service-list.html", context)
+
+
+def add_contact(request):
+    form = ContactForm(request.POST or None)
+
+    if form.is_valid():
+        contact = form.save(commit=False)
+        contact.save()
+        messages.success(request, "Contact form created successfully.")
+        return redirect("contact")
+
+    return render(request, "contact.html", {"form": form})
