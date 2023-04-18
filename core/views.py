@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from .forms import ContactForm
+from .forms import ContactForm, NewsletterForm
 from django.contrib import messages
 
 
@@ -49,9 +49,10 @@ def blog_list_sidebar_right(request):
 
 
 def contact(request):
+    contact_form = ContactForm(request.POST or None)
 
     context = {
-        "hello": "hello world"
+        "contact_form": contact_form,
     }
 
     return render(request, "contact.html", context)
@@ -103,12 +104,32 @@ def service_list(request):
 
 
 def add_contact(request):
-    form = ContactForm(request.POST or None)
+    contact_form = ContactForm(request.POST or None)
 
-    if form.is_valid():
-        contact = form.save(commit=False)
+    context = {
+        "contact_form": contact_form
+    }
+
+    if contact_form.is_valid():
+        contact = contact_form.save(commit=False)
         contact.save()
         messages.success(request, "Contact form created successfully.")
         return redirect("contact")
 
-    return render(request, "contact.html", {"form": form})
+    return render(request, "contact.html", context)
+
+
+def add_newsletter(request):
+    newsletter_form = NewsletterForm(request.POST or None)
+
+    context = {
+        "newsletter_form": newsletter_form
+    }
+
+    if newsletter_form.is_valid():
+        newsletter = newsletter_form.save(commit=False)
+        newsletter.save()
+        messages.success(request, "Newsletter form created successfully.")
+        return redirect("index")
+
+    return render(request, "index.html", context)

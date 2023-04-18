@@ -29,11 +29,13 @@ urlpatterns = [
     path('blog-details', blog_details, name='blog_details'),
     path('blog-list', blog_list_sidebar_right, name='blog_list_sidebar_right'),
     path('contact', contact, name='contact'),
+    path('contact/add', add_contact, name="add_contact"),
     path('faq', faq, name='faq'),
     path('project-details', project_details, name='project_details'),
     path('project-list', project_list, name='project_list'),
     path('service-details', service_details, name='service_details'),
     path('service-list', service_list, name='service_list'),
+    path('newsletter/add', add_newsletter, name="add_newsletter"),
 ]
 
 if settings.DEBUG:

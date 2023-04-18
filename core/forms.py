@@ -1,5 +1,18 @@
 from django import forms
-from .models import Contact
+from .models import Contact, Newsletter
+
+
+class NewsletterForm(forms.ModelForm):
+	class Meta:
+		model = Newsletter
+
+		fields = [
+			'email',
+		]
+
+		widgets = {
+			'email': forms.EmailInput(attrs={'class': 'form-control'}),
+		}
 
 
 class ContactForm(forms.ModelForm):

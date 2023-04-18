@@ -18,8 +18,9 @@
             <div class="footer-top-wrapper text-center">
                 <div class="row">
                     <div class="col-12">
-                        <form action="#" class="footer-newsletter">
-                            <input type="email" placeholder="demo@example.com">
+                        <form action='{% url "add_newsletter" %}' method="post" class="footer-newsletter">
+                            {% csrf_token %}
+                            <input type="email" name="email" placeholder="demo@example.com">
                             <button class="submit-btn" type="submit">Subscribe Now</button>
                         </form>
                     </div>
@@ -33,7 +34,7 @@
                 <div class="col-auto mb-5">
                     <!-- Start Single Footer Info -->
                     <div class="footer-single-info">
-                        <a href="tel:+0123456789" class="info-box">
+                        <a href="tel:+905380586316" class="info-box">
                             <span class="icon"><i class="icofont-phone"></i></span>
                             <span class="text">+90 538 058 63 16</span>
                         </a>
@@ -43,7 +44,7 @@
                 <div class="col-auto mb-5">
                     <!-- Start Single Footer Info -->
                     <div class="footer-single-info">
-                        <a href="mailto:demo@example.com" class="info-box">
+                        <a href="mailto:mustafaakguldev@icloud.com" class="info-box">
                             <span class="icon"><i class="icofont-envelope-open"></i></span>
                             <span class="text">mustafaakguldev@icloud.com</span>
                         </a>
