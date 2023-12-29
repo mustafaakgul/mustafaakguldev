@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, Newsletter
+from .models import Contact, Newsletter, Project
 
 
 @admin.register(Contact)
@@ -22,3 +22,14 @@ class NewsletterAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Newsletter
+
+
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Project._meta.fields]
+    list_display_links = ["title"]
+    search_fields = ["title", "description"]
+    list_filter = ["created_date"]
+
+    class Meta:
+        model = Project
