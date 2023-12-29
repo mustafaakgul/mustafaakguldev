@@ -29,6 +29,8 @@ class Project(models.Model):
     image = models.ImageField(upload_to='projects/')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+    is_current = models.BooleanField(default=False) # for current projects
+    is_old = models.BooleanField(default=False)     # for old projects
     is_active = models.BooleanField(default=True)
     is_visible = models.BooleanField(default=False)
 
